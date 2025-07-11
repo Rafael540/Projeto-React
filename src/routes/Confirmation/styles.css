@@ -1,0 +1,10 @@
+
+#cart-container-section {
+    padding: 20px 0;
+}
+
+.dsc-cart-total-container {
+    padding: 10px 20px;
+    background-color: var(--dsc-color-card-bg);
+    justify-content: space-between;
+}

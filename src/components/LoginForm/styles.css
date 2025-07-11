@@ -1,0 +1,13 @@
+
+.dsc-login-form-container {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+
+@media (min-width: 576px) {
+    #login-section {
+        padding: 40px 0;
+    }
+}
