@@ -8,3 +8,7 @@
     background-color: var(--dsc-color-card-bg);
     justify-content: space-between;
 }
+
+.dsc-color{
+    color: var(--dsc-color-font-primary);
+}

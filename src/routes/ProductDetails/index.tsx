@@ -31,16 +31,16 @@ const product: ProductDTO = {
 
 export default function ProductDetails() {
     return (
-<>
-        <HeadClient />
-        <main>
-            <section id="product-details-section" className="dsc-container">
-                <CardDetails product ={product}/>
-                <div className='dsc-btn-page-container'>
-                    <ButtonPrimary />
-                    <ButtonInverse />
-                </div>
-            </section>
-        </main>
- </>);
+        <>
+            <HeadClient />
+            <main>
+                <section id="product-details-section" className="dsc-container">
+                    <CardDetails product={product} />
+                    <div className='dsc-btn-page-container'>
+                        <ButtonPrimary text="Comprar" />
+                        <ButtonInverse text="Inicio" />
+                    </div>
+                </section>
+            </main>
+        </>);
 }

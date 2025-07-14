@@ -1,10 +1,13 @@
 import './App.css'
+import Catalog from './routes/Catalog';
+import Confirmation from './routes/Confirmation';
+import Login from './routes/Login';
 
-import ProductDetails from './routes/ProductDetails';
+
 
 export default function App() {
 
   return (
-    <ProductDetails />
+    <Catalog />
   );
 }

@@ -27,8 +27,9 @@ export default function Cart() {
                     </div>
 
                     <div className="dsc-btn-page-container">
-                        <ButtonPrimary />
-                        <ButtonInverse />
+                        <ButtonPrimary text=
+                        "Finalizar pedido" />
+                        <ButtonInverse text ="Continuar comprando" />
                     </div>
 
                 </section >

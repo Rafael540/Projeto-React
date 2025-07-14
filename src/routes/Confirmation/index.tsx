@@ -1,6 +1,6 @@
 
-import ButtonConfirmation from '../../components/ButtonConfirmation';
-import ButtonShopping from '../../components/ButtonShopping';
+
+import ButtonInverse from '../../components/ButtonInverse';
 import CardItemList from '../../components/CardItemList';
 import HeadClientName from '../../components/HeaderClientName'
 import './styles.css'
@@ -15,7 +15,7 @@ export default function Cart() {
                     <div className="dsc-cart">
                         <div className="dsc-cart-item-container line-bottom">
                             <CardItemList />
-                            
+
 
                         </div>
                         <div className="dsc-cart-item-container line-bottom">
@@ -26,10 +26,9 @@ export default function Cart() {
                             <h3> R$ 15000,00</h3>
                         </div>
                     </div>
-
+                    <h3 className="dsc-color dsc-mb20">Pedido realizado! Número 35</h3>
                     <div className="dsc-btn-page-container">
-                        <ButtonConfirmation />
-                        <ButtonShopping />
+                        <ButtonInverse text="Inicio"/>
                     </div>
 
                 </section >

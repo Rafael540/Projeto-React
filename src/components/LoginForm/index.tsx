@@ -1,4 +1,5 @@
-import ButtonEnter from '../ButtonEnter';
+
+import ButtonPrimary from '../ButtonPrimary';
 import './styles.css'
 
 export default function LoginForm() {
@@ -20,8 +21,8 @@ export default function LoginForm() {
 
 
                     </div>
-                        <ButtonEnter/>
+                    <ButtonPrimary text="Entrar" />
                 </form>
             </div>
-            </> );
+        </>);
 }
