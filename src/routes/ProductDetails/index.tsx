@@ -3,6 +3,7 @@ import ButtonPrimary from "../../components/ButtonPrimary";
 import CardDetails from "../../components/CardDetails";
 import HeadClient from "../../components/HeaderClient";
 import type { ProductDTO } from "../../models/product";
+import "./styles.css"
 
 const product: ProductDTO = {
     id:2,
@@ -15,18 +16,22 @@ const product: ProductDTO = {
             id: 2,
             name: "Eletrônicos"
         },
-
-         {
+        {
             id: 3,
             name: "Computadores"
+        },
+        {
+            id:4,
+            name: "Importado"
         }
     ]
 }
 
-import './styles.css'
+
 
 export default function ProductDetails() {
-    return (<>
+    return (
+<>
         <HeadClient />
         <main>
             <section id="product-details-section" className="dsc-container">
@@ -37,5 +42,5 @@ export default function ProductDetails() {
                 </div>
             </section>
         </main>
-    </>);
+ </>);
 }
