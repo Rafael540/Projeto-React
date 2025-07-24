@@ -2,14 +2,27 @@ import { Link, useParams } from "react-router-dom";
 import ButtonInverse from "../../../components/ButtonInverse";
 import ButtonPrimary from "../../../components/ButtonPrimary";
 import CardDetails from "../../../components/CardDetails";
-import * as productService from '../../../services/product-service'
 import "./styles.css"
+import { useEffect, useState } from "react";
+import type { ProductDTO } from "../../../models/product";
+import axios from "axios";
 
 
 export default function ProductDetails() {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const params = useParams();
-    const product = productService.findById(Number(params.productID));
+
+    const [product, setProduct] = useState<ProductDTO>();
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/products/2")
+            .then(response => {
+                console.log(response.data);
+                setProduct(response.data);
+            })
+
+    }, [])
 
     return (
         <>
