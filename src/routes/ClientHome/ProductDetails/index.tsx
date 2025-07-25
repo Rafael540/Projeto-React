@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ButtonInverse from "../../../components/ButtonInverse";
 import ButtonPrimary from "../../../components/ButtonPrimary";
 import CardDetails from "../../../components/CardDetails";
@@ -14,6 +14,8 @@ export default function ProductDetails() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const params = useParams();
 
+    const navigate = useNavigate();
+
     const [product, setProduct] = useState<ProductDTO>();
 
     useEffect(() => {
@@ -22,6 +24,10 @@ export default function ProductDetails() {
                 console.log(response.data);
                 setProduct(response.data);
             })
+           
+            .catch(() => {
+                navigate ("/")
+            });
 
     }, [])
 
@@ -33,7 +39,7 @@ export default function ProductDetails() {
                     {
                         product &&
                         <CardDetails product={product} />
-                    }
+                                            }
 
                     <div className='dsc-btn-page-container'>
                         <ButtonPrimary text="Comprar" />
