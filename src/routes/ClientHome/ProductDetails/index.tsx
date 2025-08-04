@@ -7,6 +7,7 @@ import "./styles.css"
 import * as productService from "../../../services/product-service"
 import { useEffect, useState } from "react";
 import type { ProductDTO } from "../../../models/product";
+import * as cartService from "../../../services/cart-service"
 
 
 export default function ProductDetails() {
@@ -19,17 +20,26 @@ export default function ProductDetails() {
     const [product, setProduct] = useState<ProductDTO>();
 
     useEffect(() => {
-      productService.findById(Number(params.productId))
+        productService.findById(Number(params.productId))
             .then(response => {
                 console.log(response.data);
                 setProduct(response.data);
             })
-           
+
             .catch(() => {
-                navigate ("/")
+                navigate("/")
             });
 
     }, [])
+
+    function handleByClick(){
+        if(product){
+            cartService.addProduct(product);
+                navigate("/cart")
+        }
+        
+
+    }
 
     return (
         <>
@@ -39,10 +49,12 @@ export default function ProductDetails() {
                     {
                         product &&
                         <CardDetails product={product} />
-                                            }
+                    }
 
                     <div className='dsc-btn-page-container'>
-                        <ButtonPrimary text="Comprar" />
+                        <div onClick={handleByClick}>
+                            <ButtonPrimary text="Comprar" /></div>
+
                         <Link to="/">
                             <ButtonInverse text="Inicio" />
                         </Link>
