@@ -1,27 +1,29 @@
 
+import { useEffect } from 'react';
 import './styles.css'
+import * as cartService from '../../../services/cart-service'
+import { OrderDTO, OrderItemDTO } from '../../../models/order';
 
-const cart = {
-    items: [
-        {
-            productId: 4,
-            quantity: 1,
-            name: "PC Gamer",
-            price: 1200,
-            imgUrl: "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg"
-        },
-        {
-            productId: 5,
-            quantity: 2,
-            name: "Rails for Dummies",
-            price: 100.99,
-            imgUrl: "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg"
-        }
-    ]
-}
 
+const item1: OrderItemDTO = new OrderItemDTO(
+    4, 1, "PC Ganer", 1200, "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg"
+)
+
+const item2: OrderItemDTO = new OrderItemDTO(
+    5, 2, "Rails for Dummies", 100.99, "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big."
+
+)
 
 export default function Cart() {
+    const cart: OrderDTO = new OrderDTO();
+    useEffect(() => {
+
+        cart.items.push(item1);
+        cart.items.push(item2);
+
+        cartService.saveCart(cart);
+    }, []);
+
     return (
         <>
             <main>
@@ -42,7 +44,7 @@ export default function Cart() {
                                         </div>
                                     </div>
                                     <div className="dsc-cart-item-right">
-                                       R$ {(item.price * item.quantity).toFixed(2)} 
+                                        R$ {(item.price * item.quantity).toFixed(2)}
                                     </div>
                                 </div>
                             ))
