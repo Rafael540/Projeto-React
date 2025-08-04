@@ -52,8 +52,3 @@ export default function ProductDetails() {
             </main>
         </>);
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function then(arg0: (response: any) => void) {
-    throw new Error("Function not implemented.");
-}
