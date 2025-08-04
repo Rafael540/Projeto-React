@@ -12,6 +12,10 @@ export default function Cart() {
 
     const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
 
+    function handleClearClick() {
+        cartService.clearCart();
+        setCart(cartService.getCart());
+    }
 
     return (
         <>
@@ -62,10 +66,14 @@ export default function Cart() {
                             Finalizar pedido
                         </div>
                         <Link to='/catalog'>
-                        <div className="dsc-btn dsc-btn-white">
-                            Continuar comprando
-                        </div>
+                            <div className="dsc-btn dsc-btn-white">
+                                Continuar comprando
+                            </div>
                         </Link>
+                        <div onClick={handleClearClick} className="dsc-btn dsc-btn-white">
+                            Limpar carrinho
+                        </div>
+
                     </div>
                 </section>
             </main>
