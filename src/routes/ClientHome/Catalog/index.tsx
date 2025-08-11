@@ -6,33 +6,39 @@ import ButtonNextPage from '../../../components/ButtonNextPage';
 import * as productService from '../../../services/product-service';
 import { useEffect, useState } from 'react';
 import type { ProductDTO } from '../../../models/product';
-import type { CategoryDTO } from '../../../models/category';
 
+
+type QueryParams = {
+    page: number,
+    name: string,
+}
 
 export default function Catalog() {
 
     const [products, setProducts] = useState<ProductDTO[]>([]);
 
-    const [productName, setProductName] = useState("");
-
+    const [queryParams,  setQueryParam] = useState<QueryParams>({
+        page: 0,
+        name: ""
+    });
 
     useEffect(() => {
 
-        productService.findPageRequest(0, productName)
+        productService.findPageRequest(queryParams.page, queryParams.name)
             .then(response => {
                 setProducts(response.data.content);
             })
-    }, [productName]);
+    }, [queryParams]);
 
-    function handleSearch(searchText: string){
-        setProductName(searchText)
+    function handleSearch(searchText: string) {
+        setQueryParam({ ...queryParams, name: searchText });
     }
 
 
     return (
         <main>
             <section id="catalog-section" className="dsc-container">
-                <SearchBar onSearch={handleSearch}/>
+                <SearchBar onSearch={handleSearch} />
                 <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
                     {
                         products.map(
