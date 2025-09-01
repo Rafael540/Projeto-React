@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ButtonInverse from "../../../components/ButtonInverse";
-import ButtonPrimary from "../../../components/ButtonPrimary";
-import CardDetails from "../../../components/CardDetails";
 import "./styles.css"
 import * as productService from "../../../services/product-service"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import type { ProductDTO } from "../../../models/product";
 import * as cartService from "../../../services/cart-service"
+import { ContextCartCount } from "../../../utils/context-carts";
+import CardDetails from "../../../components/CardDetails";
+import ButtonPrimary from "../../../components/ButtonPrimary";
+import ButtonInverse from "../../../components/ButtonInverse";
 
 
 export default function ProductDetails() {
@@ -16,6 +17,9 @@ export default function ProductDetails() {
     const params = useParams();
 
     const navigate = useNavigate();
+
+    const {setcontextCartCount} = useContext(ContextCartCount);
+
 
     const [product, setProduct] = useState<ProductDTO>();
 
@@ -32,12 +36,13 @@ export default function ProductDetails() {
 
     }, [])
 
-    function handleByClick(){
-        if(product){
+    function handleByClick() {
+        if (product) {
             cartService.addProduct(product);
-                navigate("/cart")
+            setcontextCartCount(cartService.getCart().items.length);
+            navigate("/cart")
         }
-        
+
 
     }
 
