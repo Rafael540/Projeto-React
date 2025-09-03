@@ -1,6 +1,7 @@
 
-.dsc-btn-blue {
+.dsc-btn-blue button{
   background-color: var(--dsc-color-btn-primary);
   color: var(--dsc-color-card-bg);
   border: none;
+  font-weight: 700;
 }
