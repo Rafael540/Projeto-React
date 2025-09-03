@@ -6,6 +6,7 @@ import ClientHome from './routes/ClientHome';
 import Cart from './routes/ClientHome/Cart';
 import { useState } from 'react';
 import { ContextCartCount } from './utils/context-carts';
+import Login from './routes/ClientHome/Login';
 
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="catalog" element={<Catalog />} />
             <Route path="product-details/:productId" element={<ProductDetails />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="login" element={<Login />} />
           </Route>
           <Route path="*" element={<Navigate to='/' />} />
 
