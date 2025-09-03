@@ -1,9 +1,9 @@
 
-
-import { loginRequest } from '../../../services/auth-service';
 import './styles.css'
 import { useState } from 'react';
 import type { CrendetialsDTO } from '../../../models/auth';
+import * as authService from "../../../services/auth-service";
+
 
 export default function Login() {
 
@@ -17,13 +17,20 @@ export default function Login() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleSubmit(event: any) {
         event.preventDefault();
-        loginRequest(formData);
+        authService.loginRequest(formData)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log("Erro no login", error);
+            })
     }
 
-    function handleInputChange(event: any){
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function handleInputChange(event: any) {
         const value = event.target.value;
         const name = event.target.name;
-        setFormData ({...formData,[name]: value});
+        setFormData({ ...formData, [name]: value });
     }
 
     return (
@@ -42,7 +49,7 @@ export default function Login() {
                                         type="text"
                                         placeholder="Email"
                                         onChange={handleInputChange}
-                                        />
+                                    />
                                     <div className="dsc-form-erro">
                                     </div>
                                 </div>

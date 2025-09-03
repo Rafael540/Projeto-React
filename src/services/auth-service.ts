@@ -1,6 +1,8 @@
 import QueryString from "qs";
 import type { CrendetialsDTO } from "../models/auth";
 import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
+import type { AxiosRequestConfig } from "axios";
+import { requestBackend } from "../utils/requests";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loginRequest(loginData: CrendetialsDTO){
@@ -10,7 +12,15 @@ export function loginRequest(loginData: CrendetialsDTO){
         Authorization: "Basic " + window.btoa(CLIENT_ID + ":" + CLIENT_SECRET)
      }
 
-     const requestBody = QueryString.stringify({...loginData, grant_type: "password"})
+     const requestBody = QueryString.stringify({...loginData, grant_type: "password"});
 
-     console.log(requestBody);
+     const config : AxiosRequestConfig ={
+        method: "POST",
+        url: "/oauth/token",
+        data: requestBody,
+        headers
+     }
+
+
+    return requestBackend(config);
 }
