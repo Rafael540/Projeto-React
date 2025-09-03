@@ -20,6 +20,12 @@ export default function Login() {
         loginRequest(formData);
     }
 
+    function handleInputChange(event: any){
+        const value = event.target.value;
+        const name = event.target.name;
+        setFormData ({...formData,[name]: value});
+    }
+
     return (
         <>
             <main>
@@ -29,17 +35,32 @@ export default function Login() {
                             <h2>Login</h2>
                             <div className="dsc-form-controls-container">
                                 <div>
-                                    <input className="dsc-form-control " type="text" placeholder="Email" />
+                                    <input
+                                        name="username"
+                                        value={formData.username}
+                                        className="dsc-form-control "
+                                        type="text"
+                                        placeholder="Email"
+                                        onChange={handleInputChange}
+                                        />
                                     <div className="dsc-form-erro">
                                     </div>
                                 </div>
                                 <div>
-                                    <input className="dsc-form-control" type="password" placeholder="Senha" />
+                                    <input
+                                        name="password"
+                                        value={formData.password}
+                                        className="dsc-form-control"
+                                        type="password"
+                                        placeholder="Senha"
+                                        onChange={handleInputChange}
+                                    />
+
                                 </div>
                             </div>
 
                             <div className="dsc-btn dsc-btn-blue ">
-                               <button>Entrar</button>
+                                <button>Entrar</button>
                             </div>
                         </form>
                     </div>
