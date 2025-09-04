@@ -1,31 +1,27 @@
 import './styles.css';
-import home from '../../assets/home.svg';
-import produto from '../../assets/produto.svg'
-
+import home from "../../assets/home.svg"
+import product from "../../assets/produto.svg"
 
 export default function HeadClient() {
 
     return (
         <header className="dsc-header-admin">
             <nav className="dsc-container">
-                <h1>DsAdmin</h1>
+                <h1>DSC Admin</h1>
                 <div className="dsc-navbar-right">
                     <div className="dsc-menu-items-container">
                         <div className="dsc-menu-item">
-                            <img src={home} alt="Home" />
-                            <p>Inicio</p>
-
+                            <img src={home} alt="Início" />
+                            <p>Início</p>
                         </div>
                         <div className="dsc-menu-item">
-                            <img src={produto} alt="Carrinho de compras" />
-                            <p className= "dsc-menu-item-active">Produto</p>
+                            <img src={product} alt="Cadastro de produtos" />
+                            <p className="dsc-menu-item">Produtos</p>
                         </div>
                     </div>
                     <div className="dsc-logged-user">
-                       <div className="dsc-logged-user">
                         <p>Maria Silva</p>
                         <a href="#">Sair</a>
-                    </div>
                     </div>
                 </div>
             </nav>
