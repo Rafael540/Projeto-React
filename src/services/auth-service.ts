@@ -3,6 +3,7 @@ import type { CrendetialsDTO } from "../models/auth";
 import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
 import type { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
+import * as acessTokenRepository from "../../src/localStorage/acess-tolen-repository";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loginRequest(loginData: CrendetialsDTO){
@@ -23,4 +24,16 @@ export function loginRequest(loginData: CrendetialsDTO){
 
 
     return requestBackend(config);
+}
+
+export function logout(){
+    acessTokenRepository.remove();
+}
+
+export function saveAcessToken(token: string){
+    acessTokenRepository.save(token);
+}
+
+export function getAcessToken(){
+    acessTokenRepository.get();
 }
