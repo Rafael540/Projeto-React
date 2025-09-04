@@ -14,12 +14,13 @@ export default function Login() {
             password: ''
         })
 
+   
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleSubmit(event: any) {
         event.preventDefault();
         authService.loginRequest(formData)
             .then(response => {
-                authService.saveAcessToken(response.data.access_token);
+                authService.saveAccessToken(response.data.access_token);
                 console.log(response.data);
             })
             .catch(error => {

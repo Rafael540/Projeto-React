@@ -4,10 +4,12 @@ import * as authService from './auth-service';
 export function findMe() {
 
     const headers ={
-        Authorization: "Bearer " + authService.getAcessToken()
+        Authorization: "Bearer  " + authService.getAccessToken()
     }
 
-    return requestBackend ({url:`/users/me`, headers});
+    console.log(headers);
+
+    return requestBackend  ({url: `/users/me`, headers});
     
    
 }
