@@ -16,7 +16,7 @@ export default function HeadClient() {
                         </div>
                         <div className="dsc-menu-item">
                             <img src={product} alt="Cadastro de produtos" />
-                            <p className="dsc-menu-item">Produtos</p>
+                            <p className="dsc-menu-item-active">Produtos</p>
                         </div>
                     </div>
                     <div className="dsc-logged-user">
