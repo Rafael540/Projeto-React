@@ -14,14 +14,13 @@ export default function Login() {
             password: ''
         })
 
-   
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleSubmit(event: any) {
         event.preventDefault();
         authService.loginRequest(formData)
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
-                console.log(response.data);
             })
             .catch(error => {
                 console.log("Erro no login", error);
@@ -69,7 +68,7 @@ export default function Login() {
                             </div>
 
                             <div className="dsc-btn dsc-btn-blue ">
-                                <button>Entrar</button>
+                                <button onClick={handleSubmit}>Entrar</button>
                             </div>
                         </form>
                     </div>
