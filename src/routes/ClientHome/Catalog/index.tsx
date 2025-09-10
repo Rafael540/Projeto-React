@@ -6,7 +6,7 @@ import ButtonNextPage from '../../../components/ButtonNextPage';
 import * as productService from '../../../services/product-service';
 import { useEffect, useState } from 'react';
 import type { ProductDTO } from '../../../models/product';
-import { isAuthenticated } from '../../../services/auth-service';
+import { hasAnyRoles, isAuthenticated } from '../../../services/auth-service';
 
 
 type QueryParams = {
@@ -26,7 +26,7 @@ export default function Catalog() {
     });
 
     useEffect(() => {
-        console.log("AUTENTICADO" , isAuthenticated());
+        console.log("TESTE", hasAnyRoles(['ROLE_CLIENT','ROLE_ADMIN']));
 
         productService.findPageRequest(queryParams.page, queryParams.name)
             .then(response => {
