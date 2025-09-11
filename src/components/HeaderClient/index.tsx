@@ -5,6 +5,7 @@ import admin from '../../assets/admin.svg'
 import * as authService from '../../services/auth-service'
 import { useContext } from 'react';
 import { ContextToken } from '../../utils/context-token';
+import LoggedUser from '../LoggedUser';
 
 
 export default function HeadClient() {
@@ -38,9 +39,7 @@ export default function HeadClient() {
                         </Link>
                     </div>
 
-                    <Link to="/login">
-                        Entrar
-                    </Link>
+                    <LoggedUser/>
 
                 </div>
             </nav>

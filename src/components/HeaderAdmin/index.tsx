@@ -1,6 +1,7 @@
 import './styles.css';
 import home from "../../assets/home.svg"
 import product from "../../assets/produto.svg"
+import LoggedUser from '../LoggedUser';
 
 export default function HeadClient() {
 
@@ -19,10 +20,7 @@ export default function HeadClient() {
                             <p className="dsc-menu-item-active">Produtos</p>
                         </div>
                     </div>
-                    <div className="dsc-logged-user">
-                        <p>Maria Silva</p>
-                        <a href="#">Sair</a>
-                    </div>
+                  <LoggedUser/>
                 </div>
             </nav>
         </header>
