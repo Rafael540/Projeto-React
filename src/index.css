@@ -222,6 +222,7 @@ nav {
   justify-content: center;
   align-items: center;
   background-color: var(--dsc-color-btn-primary);
+  color: var(--dsc-color-font-tertiary);
 }
 
 
