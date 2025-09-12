@@ -9,24 +9,26 @@ import jwtDecode from "jwt-decode";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function loginRequest(loginData: CrendetialsDTO) {
-
     const headers = {
-        "Content-Type": "application/x-www-form-ulrencoded",
-        Authorization: "Basic " + window.btoa(CLIENT_ID + ":" + CLIENT_SECRET)
-    }
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Basic " + window.btoa(CLIENT_ID + ":" + CLIENT_SECRET),
+    };
 
-    const requestBody = QueryString.stringify({ ...loginData, grant_type: "password" });
+    const requestBody = QueryString.stringify({
+        ...loginData,
+        grant_type: "password",
+    });
 
     const config: AxiosRequestConfig = {
         method: "POST",
         url: "/oauth/token",
         data: requestBody,
-        headers
-    }
-
+        headers,
+    };
 
     return requestBackend(config);
 }
+
 
 export function logout() {
     accessTokenRepository.remove();
