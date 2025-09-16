@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import type { ProductDTO } from "../../../models/product"
 import SearchBar from "../../../components/SearchBar";
 import ButtonNextPage from "../../../components/ButtonNextPage";
+import DialogInfo from "../../../components/DialogInfo";
 
 
 type QueryParams = {
@@ -92,6 +93,9 @@ export default function ProductListing() {
                     <ButtonNextPage onNextPage={handleNextPageClick} />
                 }
             </section>
+            <DialogInfo>
+                
+            </DialogInfo>
         </main>
     );
 }
