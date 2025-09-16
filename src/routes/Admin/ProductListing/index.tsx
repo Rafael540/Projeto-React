@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import pen from "../../../assets/Pen.svg"
 import trash from "../../../assets/trash.svg"
 import * as productService from '../../../services/product-service'
@@ -5,6 +6,7 @@ import * as productService from '../../../services/product-service'
 import "./styles.css"
 import { useEffect, useState } from "react";
 import type { ProductDTO } from "../../../models/product"
+import SearchBar from "../../../components/SearchBar";
 
 
 type QueryParams = {
@@ -35,6 +37,12 @@ export default function ProductListing() {
             });
     }, [queryParams]);
 
+    
+    function handleSearch(searchText: string) {
+        setProducts([]);
+        setQueryParam({ ...queryParams, page: 0, name: searchText });
+    }
+
     return (
         <main>
             <section id="product-listing-section" className="dsc-container">
@@ -44,11 +52,7 @@ export default function ProductListing() {
                     <div className="dsc-btn dsc-btn-white">Novo</div>
                 </div>
 
-                <form className="dsc-search-bar">
-                    <button type="submit">🔎︎</button>
-                    <input type="text" placeholder="Nome do produto" />
-                    <button type="reset">🗙</button>
-                </form>
+                <SearchBar onSearch={handleSearch} />
 
                 <table className="dsc-table dsc-mb20 dsc-mt20">
                     <thead>
@@ -64,7 +68,7 @@ export default function ProductListing() {
                     <tbody>
                         {
                             products.map(product => (
-                                <tr>
+                                <tr key={product.id}>
                                     <td className="dsc-tb576">{product.id}</td>
                                     <td><img className="dsc-product-listing-image" src={product.imgUrl} alt={product.name} /></td>
                                     <td className="dsc-tb768">{product.price.toFixed(2)}</td>
