@@ -26,14 +26,15 @@ export default function Catalog() {
     });
 
     useEffect(() => {
-        console.log("TESTE", hasAnyRoles(['ROLE_CLIENT','ROLE_ADMIN']));
+
 
         productService.findPageRequest(queryParams.page, queryParams.name)
             .then(response => {
                 const nextPage = response.data.content;
                 setProducts(products.concat(nextPage));
                 setLastPage(response.data.last)
-;            });
+                    ;
+            });
     }, [queryParams]);
 
 
