@@ -1,31 +1,45 @@
 
 import './styles.css'
 import { useContext, useState } from 'react';
-import type { CrendetialsDTO } from '../../../models/auth';
+
 import * as authService from "../../../services/auth-service";
 import { useNavigate } from 'react-router-dom';
 import { ContextToken } from '../../../utils/context-token';
+import FormInput from '../../../components/FormInput';
+import Form from '../../Form';
 
 
 export default function Login() {
 
     const { setContextTokenPayload } = useContext(ContextToken);
-    
+
     const navigate = useNavigate();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [formData, setFormData] = useState<CrendetialsDTO>(
-
-
-        {
-            username: '',
-            password: ''
-        })
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+    const [formData, setFormData] = useState<any>({
+        username: {
+            value: "",
+            id: "username",
+            name: "username",
+            type: "text",
+            placeholder: "Email",
+            validation: function (value: string) {
+                return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value.toLowerCase());
+            },
+            message: "Favor informar um email válido",
+        },
+        password: {
+            value: "",
+            id: "password",
+            name: "password",
+            type: "password",
+            placeholder: "Senha",
+        }
+    })
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleSubmit(event: any) {
         event.preventDefault();
-        authService.loginRequest(formData)
+        authService.loginRequest({ username: formData.username.value, password: formData.password.value })
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
                 setContextTokenPayload(authService.getAccessTokenPayload());
@@ -40,7 +54,7 @@ export default function Login() {
     function handleInputChange(event: any) {
         const value = event.target.value;
         const name = event.target.name;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: { ...formData[name], value: value } });
     }
 
     return (
@@ -52,24 +66,18 @@ export default function Login() {
                             <h2>Login</h2>
                             <div className="dsc-form-controls-container">
                                 <div>
-                                    <input
-                                        name="username"
-                                        value={formData.username}
+                                    <FormInput
+                                        {...formData.username}
                                         className="dsc-form-control "
-                                        type="text"
-                                        placeholder="Email"
                                         onChange={handleInputChange}
                                     />
                                     <div className="dsc-form-erro">
                                     </div>
                                 </div>
                                 <div>
-                                    <input
-                                        name="password"
-                                        value={formData.password}
+                                    <FormInput
+                                        {...formData.password}
                                         className="dsc-form-control"
-                                        type="password"
-                                        placeholder="Senha"
                                         onChange={handleInputChange}
                                     />
 
