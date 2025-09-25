@@ -236,7 +236,8 @@ nav a {
   color: var(--dsc-color-font-primary);
 }
 
-.dsc-search-bar button, .dsc-search-bar input {
+.dsc-search-bar button,
+.dsc-search-bar input {
   border: 1px solid var(--dsc-color-card-border);
 }
 
@@ -315,6 +316,10 @@ nav a {
   color: var(--dsc-color-font-placeholder);
 }
 
+.dsc-form-control[data-invalid="true"] {
+  border: 1px solid var(--dsc-color-error);
+}
+
 .dsc-input-error {
   border: 1px solid var(--dsc-color-error);
 }
@@ -323,6 +328,11 @@ nav a {
   color: var(--dsc-color-error);
   font-size: 12px;
   padding-left: 4px;
+  display: none;
+}
+
+.dsc-form-control[data-invalid="true"]~div {
+  display: unset;
 }
 
 .dsc-select:invalid {
@@ -438,16 +448,16 @@ nav a {
 
 
 /*Dialog styles*/
-.dsc-dialog-background{
+.dsc-dialog-background {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(0,0, 0,0.5);
+  background-color: rgb(0, 0, 0, 0.5);
 }
 
-.dsc-dialog-box{
+.dsc-dialog-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -461,19 +471,19 @@ nav a {
   transform: translate(-50%, -50%);
 }
 
-.dsc-dialog-box h2{
+.dsc-dialog-box h2 {
   font-size: 20px;
-  color:var(--dsc-color-font-primary);
+  color: var(--dsc-color-font-primary);
   margin-bottom: 20px;
 }
 
-.dsc-dialog-btn-container{
+.dsc-dialog-btn-container {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap:20px;
+  grid-gap: 20px;
 }
 
-.dsc-dialog-btn{
+.dsc-dialog-btn {
   width: 100%;
 }
