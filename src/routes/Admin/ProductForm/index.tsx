@@ -22,11 +22,16 @@ export default function ProductForm() {
             placeholder: "Nome",
         },
         price: {
-            value: "",
+            value: 200,
             id: "price",
             name: "price",
             type: "number",
             placeholder: "Preço",
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            validation: function(value: any) {
+                return Number(value) > 0;
+            },
+            message: "Favor informar um valor positivo"
         },
         imgUrl: {
             value: "",
@@ -38,6 +43,10 @@ export default function ProductForm() {
     })
 
     useEffect(() => {
+
+        const obj = forms.validate(formData, "price");
+        console.log(obj);
+
         if (isEditing) {
             productService.findById(Number(params.productId))
             .then(response => {
