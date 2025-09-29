@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 import * as forms from "../../../utils/forms"
 import * as productService from "../../../services/product-service"
+import * as categoryService from "../../../services/category-services"
 import FormTextArea from '../../../components/FormTextArea';
+import Select from 'react-select';
+
+import type { CategoryDTO } from '../../../models/category';
 
 
 export default function ProductForm() {
@@ -12,6 +16,8 @@ export default function ProductForm() {
     const params = useParams();
 
     const isEditing = params.productId !== 'create';
+
+    const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
     const [formData, setFormData] = useState<any>({
@@ -59,6 +65,13 @@ export default function ProductForm() {
     });
 
     useEffect(() => {
+        categoryService.findAllRequest()
+            .then(response => {
+                setCategories(response.data);
+            });
+    }, []);
+
+    useEffect(() => {
         if (isEditing) {
             productService.findById(Number(params.productId))
                 .then(response => {
@@ -75,6 +88,8 @@ export default function ProductForm() {
     function handleTurnDirty(name: string) {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
+
+
 
     return (
         <main>
@@ -113,6 +128,16 @@ export default function ProductForm() {
                                     onChange={handleInputChange}
                                 />
                             </div>
+
+                            <div >
+                                <Select
+                                    options={categories}
+                                    isMulti
+                                    getOptionLabel={(obj) => obj.name}
+                                    getOptionValue={(obj) => String(obj.id)}
+                                />
+                            </div>
+
                             < div>
                                 <FormTextArea
                                     {...formData.description}
