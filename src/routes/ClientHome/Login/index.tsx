@@ -14,6 +14,8 @@ export default function Login() {
 
     const { setContextTokenPayload } = useContext(ContextToken);
 
+    const [submitResponseFail, setSubmitResponseFail] = useState(false);
+
     const navigate = useNavigate();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
     const [formData, setFormData] = useState<any>({
@@ -26,7 +28,8 @@ export default function Login() {
             validation: function (value: string) {
                 return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value.toLowerCase());
             },
-           
+          
+
         },
         password: {
             value: "",
@@ -35,19 +38,28 @@ export default function Login() {
             type: "password",
             placeholder: "Senha",
         }
-    })
+    });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleSubmit(event: any) {
         event.preventDefault();
+
+        setSubmitResponseFail(false);
+
+        const formDataValidated = forms.dirtyAndValidateAll(formData);
+        if (forms.hasAnyInvalid(formDataValidated)) {
+            setFormData(formDataValidated);
+            return;
+        }
+
         authService.loginRequest(forms.toValues(formData))
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
                 setContextTokenPayload(authService.getAccessTokenPayload());
                 navigate("/cart")
             })
-            .catch(error => {
-                console.log("Erro no login", error);
+            .catch(() => {
+                setSubmitResponseFail(true);
             })
     }
 
@@ -86,7 +98,17 @@ export default function Login() {
                                     />
 
                                 </div>
+                                {
+                                    submitResponseFail &&
+                                    <div className='dsc-form-global-error'>
+                                        Usuário ou senha inválidos!
+                                    </div>
+                                }
+
+
+
                             </div>
+
 
                             <div className="dsc-btn dsc-btn-blue ">
                                 <button onClick={handleSubmit}>Entrar</button>

@@ -110,6 +110,7 @@ export default function ProductForm() {
             setFormData(formDataValidated);
             return;
         }
+        
         const requestBody = forms.toValues(formData);
         if (isEditing) {
             requestBody.id = params.productId;
