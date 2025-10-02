@@ -44,25 +44,25 @@ src/
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repo.git
+git clone https://github.com/Rafael540/Projeto-React.git
 ```
 
 2. **Acesse a pasta do projeto:**
 
 ```bash
-cd nome-do-repo
+cd Projeto-React.git
 ```
 
 3. **Instale as dependências:**
 
 ```bash
-npm install
+yarn
 ```
 
 4. **Rode o projeto:**
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 A aplicação estará disponível em `http://localhost:5173`.
