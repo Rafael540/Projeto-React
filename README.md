@@ -1,10 +1,3 @@
-Perfeito 👍
-Segue um **README completo**, bem técnico, organizado e com cara de projeto profissional — ideal para **portfólio no GitHub** e leitura por **tech leads**.
-
-Você pode copiar e colar direto no repositório.
-
----
-
 # 📦 Projeto React – Catálogo de Produtos
 
 Este projeto é uma **aplicação web frontend desenvolvida com React.js e TypeScript**, criada com foco em **componentização**, **organização de código** e **boas práticas de desenvolvimento frontend**. A aplicação simula um **catálogo de produtos**, oferecendo fluxos distintos para **usuários comuns** e **administradores**.
