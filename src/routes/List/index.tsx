@@ -3,7 +3,6 @@ import computer from "../../assets/computer.png"
 import edite from "../../assets/edite.svg"
 import trash from "../../assets/trash.svg"
 import './styles.css'
-import ButtonNextPage from "../../components/ButtonNextPage";
 
 export default function List() {
 
@@ -100,7 +99,7 @@ export default function List() {
                             </tr>
                         </tbody>
                     </table>
-                    <ButtonNextPage />
+                   
                 </section>
 
             </main>
